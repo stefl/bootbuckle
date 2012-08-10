@@ -1,0 +1,2 @@
+compass: bundle exec compass watch
+web: bundle exec unicorn -p 3333 -c ./unicorn.rb

@@ -1,0 +1,61 @@
+-# coding: utf-8
+!!! 5
+%html{:lang => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      = @title + " | " if @title
+      = Bootbuckle.title
+    %meta{:charset => "utf-8"}/
+    %link{:rel => "canonical", :href => @canonical || "http://#{Bootbuckle.base_host}#{request.path}"}
+    %link{:rel => "shortcut icon", :href=>"/icons/icon57x57.png"}/
+    %link{:rel => "apple-touch-icon-precomposed", :sizes=>"57x57", :href=>"/icons/icon57x57.png"}/
+    %link{:rel => "apple-touch-icon-precomposed", :sizes=>"72x72", :href=>"/icons/icon72x72.png"}/
+    %link{:rel => "apple-touch-icon-precomposed", :sizes=>"114x114", :href=>"/icons/icon114x114.png"}/
+    
+    %meta{:name => "keywords", :value => Bootbuckle.title}
+    %meta{:name => "description", :value => Bootbuckle.description}
+    %meta{:name => "MSSmartTagsPreventParsing", :content => "true"}/
+    %meta{:"http-equiv" => "X-UA-Compatible", :content => "chrome=1"}/
+    %meta{:name=>"viewport", :content=>"width=device-width,initial-scale=1;maximum-scale=1;minimum-scale=1;user-scalable=no;"}/
+    %meta{:name=>"apple-mobile-web-app-capable", :content=>"yes"}/
+    %meta{:name=>"apple-mobile-web-app-status-bar-style", :content=>"black"}/
+    %link{:href => "/stylesheets/application.css", :media => "screen, projection", :rel => "stylesheet", :type => "text/css"}/
+    
+    = favicon_tag '/favicon.ico'
+    %script{:src=>"/assets/modernizr.js",:type=>"text/javascript"}
+  
+    %script{:type=>"text/javascript", :src=>"http://use.typekit.com/#{Bootbuckle.typekit}.js"}
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>    
+    
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    - if Padrino.env == :production  
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '#{Bootbuckle.google_analytics}']);
+        _gaq.push(['_setDomainName', '#{Bootbuckle.base_host}']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+  %body{:id=>(request.path.split("/")[1] rescue "")}
+    .page
+      %header#header          
+        %h1#logo
+          %a{:title=>Bootbuckle.title, :href=>"/"}= Bootbuckle.title
+        %h2
+          = Bootbuckle.description
+      %section.content
+        = yield
+      
+      %footer
+        
+  = yield_content :scripts
+  
+  = "<!-- Rendered at #{Time.now} -->"

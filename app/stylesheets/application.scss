@@ -1,0 +1,36 @@
+@import "compass/reset";
+@import "compass/typography";
+@import "compass/css3";
+@import "compass/typography/vertical_rhythm";
+@import "compass/utilities/links/link-colors";
+
+$total-columns  : 12;             // a 12-column grid
+$column-width   : 4em;            // each column is 4em wide
+$gutter-width   : 1em;            // 1em gutters between columns
+$grid-padding   : $gutter-width;  // grid-padding equal to gutters
+
+$container-style: magic;
+$background-color: #f8faf4;
+$link-color:   #8a4945;
+
+@import "susy";
+
+@include establish-baseline;
+
+body {
+  background-color: $background-color;
+  a {
+    @include link-colors($link-color, lighten($link-color,10), lighten($link-color,15), lighten($link-color,20), lighten($link-color,25));
+  }
+  h1 a {
+    text-decoration: none;
+  }
+  color: desaturate(darken($background-color,75),10);
+}
+
+h1 {
+  @include adjust-font-size-to($base-font-size * 2, $lines:2);
+  @include at-breakpoint(60em 12) { 
+    @include adjust-font-size-to($base-font-size * 3, $lines:2);
+  }
+}
