@@ -15,5 +15,4 @@ class Bootbuckle < Padrino::Application
   set :title, "My new app"
   set :base_host, "mynewapp.com"
   set :description, "A new shiny thing, how exciting!"
-  set :mongo_datbase_name, "bootbuckle"
 end
