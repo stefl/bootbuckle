@@ -41,3 +41,4 @@ To deploy to Heroku on the new Cedar stack:
 To run locally:
 
     foreman start -f Procfile.dev
+    open http://localhost:3333
