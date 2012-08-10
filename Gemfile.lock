@@ -46,6 +46,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    mongo (1.6.4)
+      bson (~> 1.6.4)
     mongoid (3.0.3)
       activemodel (~> 3.1)
       moped (~> 1.1)
@@ -134,6 +136,7 @@ DEPENDENCIES
   execjs
   haml
   jsmin
+  mongo
   mongoid
   padrino (= 0.10.5)
   padrino-sprockets!
