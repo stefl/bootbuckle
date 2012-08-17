@@ -1,5 +1,5 @@
 source :rubygems
-
+ruby '1.9.3'
 # Server requirements (defaults to WEBrick)
 # gem 'thin'
 # gem 'mongrel'

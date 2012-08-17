@@ -66,16 +66,12 @@ test:
       <<: *default_session
       database: delight_test
 
-<% if url = (ENV['MONGOHQ_URL'] || ENV['MONGOLAB_URL']) %>
-  <% uri = URI.parse(url) %>
-production:
-  <<: *defaults
+production:   
   sessions:
     default:
-      <<: *default_session
-      database: <%= uri.path.sub('/','') %>
-      username: <%= uri.user %>
-      password: <%= uri.password %>
-      hosts:
-        - <%= uri.host %>:<%= uri.port %>
-<% end %>
+      uri: <%= ENV['MONGOLAB_URI'] || ENV['MONGOHQ_URL'] %>
+      options:
+        skip_version_check: true
+  options:
+    preload_models: true
+    raise_not_found_error: false
